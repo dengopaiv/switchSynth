@@ -1,17 +1,11 @@
 #Copyright 2013-2016 Tyler Spivey, released under the GPL
-try:
-	import cPickle
-except ModuleNotFoundError:
-	import _pickle as cPickle
+import pickle
 import os
 import copy
 import config
 import globalPluginHandler
 import speech
-try:
-	from speech import getSynth, setSynth
-except ImportError:
-	from synthDriverHandler import getSynth, setSynth
+from synthDriverHandler import getSynth, setSynth
 
 import ui
 import addonHandler
@@ -47,10 +41,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		if self.slot not in self.synths:
 			self.synths[self.slot] = {}
 		self.synths[self.slot]['name'] = getSynth().name
-		if hasattr(config.conf['speech'][getSynth().name], 'items'):
-			items = config.conf['speech'][getSynth().name].items()
-		else:
-			items = config.conf['speech'][getSynth().name].iteritems()
+		items = config.conf['speech'][getSynth().name].items()
 		items = dict(items)
 		for k, v in items.items():
 			if isinstance(v, config.AggregatedSection):
@@ -64,13 +55,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def write(self):
 		path = os.path.join(config.getUserDefaultConfigPath(), "switch_synth.pickle")
 		with open(path, 'wb') as f:
-			cPickle.dump(self.synths, f, 0)
+			pickle.dump(self.synths, f, 0)
 
 	def load(self):
 		path = os.path.join(config.getUserDefaultConfigPath(), "switch_synth.pickle")
 		if not os.path.exists(path): return
 		with open(path, 'rb') as f:
-			self.synths = cPickle.load(f)
+			self.synths = pickle.load(f)
 		if 'version' not in self.synths:
 			self.synths = {'version': 1}
 
