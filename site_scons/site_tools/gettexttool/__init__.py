@@ -23,6 +23,15 @@ def exists(env):
 	return True
 
 
+def compileMo(target, source, env):
+	"""Compile .po file to .mo using pythongettext module."""
+	from pythongettext.msgfmt import Msgfmt
+	with open(str(source[0]), 'rb') as po_file:
+		mo_content = Msgfmt(po_file, name=str(source[0])).getAsFile()
+	with open(str(target[0]), 'wb') as mo_file:
+		mo_file.write(mo_content.read())
+
+
 XGETTEXT_COMMON_ARGS = (
 	"--msgid-bugs-address='$gettext_package_bugs_address' "
 	"--package-name='$gettext_package_name' "
@@ -38,7 +47,7 @@ def generate(env):
 	env.SetDefault(gettext_package_version="")
 
 	env["BUILDERS"]["gettextMoFile"] = env.Builder(
-		action=Action("msgfmt -o $TARGET $SOURCE", "Compiling translation $SOURCE"),
+		action=Action(compileMo, "Compiling translation $SOURCE"),
 		suffix=".mo",
 		src_suffix=".po",
 	)
