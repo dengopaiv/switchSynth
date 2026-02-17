@@ -2,9 +2,9 @@
 
 Dieses Addon ermöglicht das einfache Umschalten von Stimmprofilen über Kurztasten.
 
-Es gibt 6 Stimmprofile, 1 bis 6. Standardmäßig sind sie nicht zugewwiesen.
+Es gibt 9 Stimmprofile, 1 bis 9. Standardmäßig sind sie nicht zugewwiesen.
 
-Stimmprofile können durch Drücken von Strg+Umschalt+NVDA+1 bis Strg+Umschalt+NVDA+6 umgeschaltet werden.
+Stimmprofile können durch Drücken von Strg+Umschalt+NVDA+1 bis Strg+Umschalt+NVDA+9 umgeschaltet werden.
 
 Sobald auf ein Profil umgeschaltet wird, werden dessen Stimmen  und Einstellungen geladen, sofern vorhanden.
 

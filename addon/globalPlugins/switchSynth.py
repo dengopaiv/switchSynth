@@ -72,5 +72,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	"kb:control+shift+NVDA+4": "setSynth",
 	"kb:control+shift+NVDA+5": "setSynth",
 	"kb:control+shift+NVDA+6": "setSynth",
+	"kb:control+shift+NVDA+7": "setSynth",
+	"kb:control+shift+NVDA+8": "setSynth",
+	"kb:control+shift+NVDA+9": "setSynth",
 	"kb:control+shift+NVDA+v":"saveSynth",
 }
